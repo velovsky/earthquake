@@ -1,2 +1,0 @@
-# earthquake
-Earthquake code challenge
