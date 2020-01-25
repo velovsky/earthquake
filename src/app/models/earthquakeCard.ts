@@ -1,6 +1,6 @@
 import { Properties } from '@api/models/property';
 
-export interface EarthquakeCard {
+export class EarthquakeCard {
   place: string;
   date: Date;
   magnitude: number;

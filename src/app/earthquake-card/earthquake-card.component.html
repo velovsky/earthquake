@@ -7,8 +7,8 @@
   <mat-card-content>
     <ul>
       <li><b>Magnitude:</b> {{earthquakesCard.magnitude}}</li>
-      <li><b>Alert:</b> {{earthquakesCard.alert}}</li>
-      <li><b>Tsunami:</b> {{earthquakesCard.tsunami ? 'yes':'no'}}</li>
+      <li><b>Alert:</b> {{earthquakesCard.alert === null ? 'N/A' : earthquakesCard.alert}}</li>
+      <li><b>Tsunami:</b> {{earthquakesCard.tsunami ? 'yes' : 'no'}}</li>
     </ul>
   </mat-card-content>
   <mat-card-actions>
