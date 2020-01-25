@@ -4,7 +4,7 @@
     <mat-card-subtitle>{{earthquakesCard.date | date:'medium'}}</mat-card-subtitle>
   </mat-card-header>
   <!-- BEGIN GOOGLE'S MINIMAP -->
-  <agm-map [latitude]="earthquakesCard.latitude" [longitude]="earthquakesCard.longitude" [zoomControl]="false">
+  <agm-map [latitude]="earthquakesCard.latitude" [streetViewControl]="false" [scrollwheel]="false" [longitude]="earthquakesCard.longitude" [zoomControl]="false">
     <agm-marker [latitude]="earthquakesCard.latitude" [longitude]="earthquakesCard.longitude"></agm-marker>
   </agm-map>
   <!-- END GOOGLE'S MINIMAP -->

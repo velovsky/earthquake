@@ -24,7 +24,7 @@ import { environment } from 'src/environments/environment';
     MatCardModule,
     MatButtonModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB0Mz1SRi6Gp97ntE856EMY0GCU9n5yMcQ'
+      apiKey: environment.googleAPI
     })
   ],
   providers: [],
