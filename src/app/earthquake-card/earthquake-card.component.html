@@ -1,0 +1,21 @@
+<mat-card class="earthquake-card">
+  <mat-card-header>
+    <mat-card-title>{{earthquakesCard.place}}</mat-card-title>
+    <mat-card-subtitle>{{earthquakesCard.date | date:'medium'}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <ul>
+      <li><b>Magnitude:</b> {{earthquakesCard.magnitude}}</li>
+      <li><b>Alert:</b> {{earthquakesCard.alert === null ? 'N/A' : earthquakesCard.alert}}</li>
+      <li><b>Tsunami:</b> {{earthquakesCard.tsunami ? 'yes' : 'no'}}</li>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions>
+    <a class="anchor-button-wrapper" href="{{earthquakesCard.link}}" target="_blank">
+      <button mat-button>
+        visit page
+      </button>
+    </a>
+  </mat-card-actions>
+</mat-card>
