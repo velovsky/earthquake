@@ -1,3 +1,5 @@
 <section class="list-cards">
-  <app-earthquake-card *ngFor="let earthquake of earthquakes; index as i"></app-earthquake-card>
+  <app-earthquake-card *ngFor="let earthquake of earthquakeCards; index as i" 
+    [info]="earthquake">
+  </app-earthquake-card>
 </section>

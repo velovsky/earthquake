@@ -1,8 +1,16 @@
-.example-card {
+.earthquake-card {
   max-width: 400px;
+
+  &:hover {
+    box-shadow: 0 0 8px 1px rgba(0,0,0,.38);
+  }
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+a.anchor-button-wrapper {
+  color: inherit;
+  text-decoration: none;
+
+  button {
+    text-transform: uppercase;
+  }
 }
