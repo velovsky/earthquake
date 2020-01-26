@@ -3,6 +3,7 @@ import { EarthquakesService } from './api/api/earthquakes.service';
 import { EarthquakeCard } from './models/earthquakeCard';
 import { MapperEarthquakeToCardService } from './services/mapper-earthquake-to-card.service';
 import { Earthquakes } from './api/models/earthquakes';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.earthquakesService.getEarthquakes().subscribe(
+    this.earthquakesService.getEarthquakes().pipe(first()).subscribe(
       earthquakes => this.handleEarthquakes(earthquakes)
     );
   }

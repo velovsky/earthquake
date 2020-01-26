@@ -17,26 +17,60 @@ export class EarthquakesService {
   constructor(private http: HttpClient) { }
 
   public getEarthquakes(sort?: Sort.SortEnum): Observable<Earthquakes> {
-    const output: Observable<Earthquakes> = this.http.get<Earthquakes>(`${this.basePath}`);
+    let output: Observable<Earthquakes> = this.http.get<Earthquakes>(`${this.basePath}`);
 
     if (sort) {
-      output.pipe(
-        tap(earthquakes => this.sortOperation(earthquakes))
+      output = output.pipe(
+        tap(earthquakes => this.sortOperation(earthquakes, sort))
       );
     }
 
     return output;
   }
 
-  private sortOperation(earthquakes: Earthquakes): Earthquakes {
+  // Sort functions
+  private sortOperation(earthquakes: Earthquakes, sort: Sort.SortEnum): Earthquakes {
     const features: Feature[] = earthquakes.features;
 
-    features.sort((a, b) => {
-      const aTime = a.properties.time;
-      const bTime = b.properties.time;
-      return aTime - bTime;
-    });
+    switch (sort) {
+      case Sort.SortEnum.DATE_ASC:
+        features.sort((a, b) => {
+          const aTime = a.properties.time;
+          const bTime = b.properties.time;
+          return this.ASC(aTime, bTime);
+        });
+        break;
+      case Sort.SortEnum.DATE_DESC:
+        features.sort((a, b) => {
+          const aTime = a.properties.time;
+          const bTime = b.properties.time;
+          return this.DESC(aTime, bTime);
+        });
+        break;
+      case Sort.SortEnum.MAG_ASC:
+        features.sort((a, b) => {
+          const aMag = a.properties.mag;
+          const bMag = b.properties.mag;
+          return this.ASC(aMag, bMag);
+        });
+        break;
+      case Sort.SortEnum.MAG_DESC:
+        features.sort((a, b) => {
+          const aMag = a.properties.mag;
+          const bMag = b.properties.mag;
+          return this.DESC(aMag, bMag);
+        });
+        break;
+    }
 
     return earthquakes;
+  }
+
+  private DESC(a: number, b: number): number {
+    return b - a;
+  }
+
+  private ASC(a: number, b: number): number {
+    return -this.DESC(a, b);
   }
 }
