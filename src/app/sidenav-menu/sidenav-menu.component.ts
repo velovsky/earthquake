@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Sort } from '@app/models/sort';
 import { EarthquakesService } from '@app/api/api/earthquakes.service';
-import { MapperEarthquakeToCardService } from '@app/services/mapper-earthquake-to-card.service';
 import { EarthquakeCard } from '@app/models/earthquakeCard';
-import { Earthquakes } from '@app/api/models/earthquakes';
+import { ApplySortFiltersService } from '@app/services/apply-sort-filters.service';
 
 @Component({
   selector: 'app-sidenav-menu',
@@ -25,22 +24,13 @@ export class SidenavMenuComponent {
 
   constructor(
     private earthquakesService: EarthquakesService,
-    private mapperEarthquakeToCardService: MapperEarthquakeToCardService // TEMP
+    private dataManager: ApplySortFiltersService,
     ) {}
 
   public apply(): void {
     this.earthquakesService.getEarthquakes(this.sortBy)
     .subscribe(
-      earthquakes => this.handleEarthquakes(earthquakes)
+      earthquakes => this.dataManager.updateData(earthquakes)
      );
   }
-
-  // TEMP
-  handleEarthquakes(earthquakes: Earthquakes): void {
-    this.earthquakeCards = earthquakes.features.map(
-      feature => this.mapperEarthquakeToCardService.convert(feature)
-    );
-    console.log(this.earthquakeCards);
-  }
-
 }
