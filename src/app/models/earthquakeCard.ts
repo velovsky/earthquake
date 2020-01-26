@@ -7,5 +7,6 @@ export class EarthquakeCard {
   alert: Properties.AlertEnum;
   tsunami: boolean;
   link: string;
-  coordinates: number[];
+  longitude: number;
+  latitude: number;
 }

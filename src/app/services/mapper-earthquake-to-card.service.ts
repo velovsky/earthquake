@@ -24,7 +24,8 @@ export class MapperEarthquakeToCardService {
       link: url,
       date: new Date(time),
       tsunami: tsunami === 1 ? true : false,
-      coordinates
+      longitude: coordinates[0],
+      latitude: coordinates[1]
     };
 
     return output;

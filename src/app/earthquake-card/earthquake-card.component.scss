@@ -1,9 +1,27 @@
+:host {
+  display: flex;
+  align-items: stretch;
+}
+
 .earthquake-card {
-  max-width: 400px;
+  width: 300px;
 
   &:hover {
     box-shadow: 0 0 8px 1px rgba(0,0,0,.38);
   }
+
+  .mat-card-header {
+    min-height: 85px;
+  }
+}
+
+section.minimap-wrapper {
+  margin: 10px 0;
+}
+
+agm-map {
+  height: 300px;
+  width: 100%;
 }
 
 a.anchor-button-wrapper {
