@@ -26,7 +26,6 @@ export interface Properties {
   type: string;
 }
 
-// tslint:disable-next-line: no-namespace
 export namespace Properties {
   export type AlertEnum = 'green' | 'yellow' | 'orange' | 'red';
   export const AlertEnum = {

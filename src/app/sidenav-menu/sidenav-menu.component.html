@@ -1,0 +1,56 @@
+<!-- BEGIN FILTER MENU -->
+<section class="filter-menu">
+
+  <h4>Filter by</h4>
+
+  <!-- DATE/TIME -->
+  <mat-form-field>
+    <mat-label>Date/Time</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let field of sortFields" [value]="field.value">
+        {{field.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- MAGNITUDE -->
+  <mat-form-field>
+    <mat-label>Magnitude</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let field of sortFields" [value]="field.value">
+        {{field.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- ALERT TYPE -->
+  <mat-form-field>
+    <mat-label>Alert type</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let field of sortFields" [value]="field.value">
+        {{field.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</section>
+<!-- END FILTER MENU -->
+
+<!-- BEGIN SORT MENU -->
+<section class="sort-menu">
+  
+  <hr>
+
+  <h4>Sort By</h4>
+
+  <mat-form-field>
+    <mat-label>Sort by</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let field of sortFields" [value]="field.value">
+        {{field.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+</section>
+<!-- END SORT MENU -->
