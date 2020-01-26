@@ -45,7 +45,7 @@
 
   <mat-form-field>
     <mat-label>Sort by</mat-label>
-    <mat-select>
+    <mat-select [(value)]="sortBy">
       <mat-option *ngFor="let field of sortFields" [value]="field.value">
         {{field.label}}
       </mat-option>

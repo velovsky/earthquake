@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Sort } from '@app/models/sort';
+import { EarthquakesService } from '@app/api/api/earthquakes.service';
 
 @Component({
   selector: 'app-sidenav-menu',
@@ -14,5 +15,13 @@ export class SidenavMenuComponent {
     {label: 'date/time asc', value: Sort.SortEnum.DATE_ASC},
     {label: 'date/time desc', value: Sort.SortEnum.DATE_DESC}
   ];
+
+  sortBy: Sort;
+
+  constructor(private earthquakesService: EarthquakesService) {};
+
+  public apply(): void {
+    this.earthquakesService.getEarthquakes(this.sortBy.value);
+  }
 
 }
