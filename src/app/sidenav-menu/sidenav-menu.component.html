@@ -6,8 +6,8 @@
   <!-- DATE/TIME -->
   <mat-form-field>
     <mat-label>Date/Time</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let field of sortFields" [value]="field.value">
+    <mat-select [(value)]="selectedDate">
+      <mat-option *ngFor="let field of dateFields" [value]="field.value">
         {{field.label}}
       </mat-option>
     </mat-select>
@@ -16,8 +16,8 @@
   <!-- MAGNITUDE -->
   <mat-form-field>
     <mat-label>Magnitude</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let field of sortFields" [value]="field.value">
+    <mat-select [(value)]="selectedMagnitude">
+      <mat-option *ngFor="let field of magnitudeFields" [value]="field.value">
         {{field.label}}
       </mat-option>
     </mat-select>
@@ -26,8 +26,8 @@
   <!-- ALERT TYPE -->
   <mat-form-field>
     <mat-label>Alert type</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let field of sortFields" [value]="field.value">
+    <mat-select [(value)]="selectedAlert">
+      <mat-option *ngFor="let field of alertFields" [value]="field.value">
         {{field.label}}
       </mat-option>
     </mat-select>

@@ -1,3 +1,5 @@
+import { format } from 'url';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -5,7 +7,7 @@
 export const environment = {
   production: false,
   googleAPI: 'AIzaSyB0Mz1SRi6Gp97ntE856EMY0GCU9n5yMcQ',
-  earthquakesApiEndpoint: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson'
+  earthquakesApiEndpoint: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary',
 };
 
 /*
