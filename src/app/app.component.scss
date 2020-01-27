@@ -1,3 +1,20 @@
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 350px;
+  padding: 10px;
+}
+
+mat-sidenav-content {
+  p.open-side-wrapper {
+    position: fixed;
+    margin: 10px;
+    z-index: 1;
+  }
+}
+
 .list-cards {
   display: flex;
   flex-wrap: wrap;

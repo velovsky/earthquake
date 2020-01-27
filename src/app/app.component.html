@@ -1,5 +1,29 @@
-<section class="list-cards">
-  <app-earthquake-card *ngFor="let earthquake of earthquakeCards; index as i" 
-    [info]="earthquake">
-  </app-earthquake-card>
-</section>
+<mat-sidenav-container class="example-container" (backdropClick)="sidenav.close()">
+
+  <!-- BEGIN SIDENAV -->
+  <mat-sidenav #sidenav fixedInViewport="true" (keydown.escape)="sidenav.close()" disableClose>
+    <p>
+      <button mat-button (click)="sidenav.close()" aria-label="Close filter and sort menu">
+        <mat-icon>close</mat-icon>
+      </button>
+    </p>
+    <app-sidenav-menu></app-sidenav-menu>
+  </mat-sidenav>
+  <!-- END SIDENAV -->
+
+  <!-- BEGIN PAGE CONTENT -->
+  <mat-sidenav-content>
+    <p class="open-side-wrapper">
+      <button (click)="sidenav.open()" mat-fab aria-label="Open filter and sort menu">
+        <mat-icon>menu_open</mat-icon>
+      </button>
+    </p>
+    <section class="list-cards">
+      <app-earthquake-card *ngFor="let earthquake of earthquakeCards; index as i" 
+        [info]="earthquake">
+      </app-earthquake-card>
+    </section>
+  </mat-sidenav-content>
+  <!-- END PAGE CONTENT -->
+
+</mat-sidenav-container>

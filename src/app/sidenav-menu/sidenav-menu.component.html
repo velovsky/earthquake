@@ -1,0 +1,61 @@
+<!-- BEGIN FILTER MENU -->
+<section class="filter-menu">
+
+  <h4>Filter by</h4>
+
+  <!-- DATE/TIME -->
+  <mat-form-field>
+    <mat-label>Date/Time</mat-label>
+    <mat-select [(value)]="selectedDate">
+      <mat-option *ngFor="let field of dateFields" [value]="field.value">
+        {{field.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- MAGNITUDE -->
+  <mat-form-field>
+    <mat-label>Magnitude</mat-label>
+    <mat-select [(value)]="selectedMagnitude">
+      <mat-option *ngFor="let field of magnitudeFields" [value]="field.value">
+        {{field.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- ALERT TYPE -->
+  <mat-form-field>
+    <mat-label>Alert type</mat-label>
+    <mat-select [(value)]="selectedAlert">
+      <mat-option [value]="'all'">All</mat-option>
+      <mat-option *ngFor="let field of alertFields" [value]="field.value">
+        {{field.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</section>
+<!-- END FILTER MENU -->
+
+<!-- BEGIN SORT MENU -->
+<section class="sort-menu">
+  
+  <hr>
+
+  <h4>Sort By</h4>
+
+  <mat-form-field>
+    <mat-label>Sort by</mat-label>
+    <mat-select [(value)]="sortBy">
+      <mat-option *ngFor="let field of sortFields" [value]="field.value">
+        {{field.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+</section>
+<!-- END SORT MENU -->
+
+<button mat-button (click)="apply()" aria-label="Apply filters and sorts">
+  APPLY
+</button>

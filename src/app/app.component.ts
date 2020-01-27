@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EarthquakesService } from './api/api/earthquakes.service';
 import { EarthquakeCard } from './models/earthquakeCard';
 import { MapperEarthquakeToCardService } from './services/mapper-earthquake-to-card.service';
 import { Earthquakes } from './api/models/earthquakes';
+import { DataManagerService } from './services/data-manager.service';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +14,18 @@ export class AppComponent implements OnInit {
   earthquakeCards: EarthquakeCard[] = [];
 
   constructor(
-    private earthquakesService: EarthquakesService,
-    private mapperEarthquakeToCardService: MapperEarthquakeToCardService
-    ) {}
+    private mapperEarthquakeToCardService: MapperEarthquakeToCardService,
+    private dataManager: DataManagerService
+    ) {
+
+      // update results in page everytime the filter/sort is changed
+      this.dataManager.newData$
+        .subscribe(
+          earthquakes => this.handleEarthquakes(earthquakes)
+        );
+  }
 
   ngOnInit() {
-    this.earthquakesService.getEarthquakes().subscribe(
-      earthquakes => this.handleEarthquakes(earthquakes)
-    );
   }
 
   handleEarthquakes(earthquakes: Earthquakes): void {

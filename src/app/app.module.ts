@@ -4,17 +4,24 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { EarthquakeCardComponent } from './earthquake-card/earthquake-card.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { AgmCoreModule } from '@agm/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+
 import { environment } from 'src/environments/environment';
+import { EarthquakeCardComponent } from './earthquake-card/earthquake-card.component';
+import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    EarthquakeCardComponent
+    EarthquakeCardComponent,
+    SidenavMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +30,9 @@ import { environment } from 'src/environments/environment';
     NoopAnimationsModule,
     MatCardModule,
     MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatSelectModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleAPI
     })
