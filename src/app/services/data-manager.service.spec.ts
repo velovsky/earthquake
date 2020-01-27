@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApplySortFiltersService } from './apply-sort-filters.service';
+import { DataManagerService } from './data-manager.service';
 
 describe('ApplySortFiltersService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ApplySortFiltersService = TestBed.get(ApplySortFiltersService);
+    const service: DataManagerService = TestBed.get(DataManagerService);
     expect(service).toBeTruthy();
   });
 });

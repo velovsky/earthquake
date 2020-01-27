@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { EarthquakesService } from '@app/api/api/earthquakes.service';
-import { EarthquakeCard } from '@app/models/earthquakeCard';
-import { ApplySortFiltersService } from '@app/services/apply-sort-filters.service';
+import { Earthquakes } from '@app/api/models/earthquakes';
+import { Properties } from '@app/api/models/property';
+import { DateTime } from '@app/models/dateTime.enum';
+import { FilterSelect } from '@app/models/filterSelect';
+import { Magnitude } from '@app/models/magnitude.enum';
 import { Sort } from '@app/models/sort.enum';
 import { SortSelect } from '@app/models/sortSelect';
-import { Properties } from '@app/api/models/property';
+import { DataManagerService } from '@app/services/data-manager.service';
+import { FilterSortService } from '@app/services/filter-sort.service';
 import { first } from 'rxjs/operators';
-import { Earthquakes } from '@app/api/models/earthquakes';
-import { Feature } from '@app/api/models/feature';
-import { FilterSelect } from '@app/models/filterSelect';
-import { DateTime } from '@app/models/dateTime.enum';
-import { Magnitude } from '@app/models/magnitude.enum';
 
 @Component({
   selector: 'app-sidenav-menu',
@@ -19,7 +18,7 @@ import { Magnitude } from '@app/models/magnitude.enum';
 })
 export class SidenavMenuComponent implements OnInit {
 
-  earthquakeCards: EarthquakeCard[] = [];
+  earthquakes: Earthquakes;
 
   // date
   dateFields: FilterSelect[] = [
@@ -32,11 +31,11 @@ export class SidenavMenuComponent implements OnInit {
 
   // magnitude
   magnitudeFields: FilterSelect[] = [
+    {label: 'All', value: Magnitude.ALL},
     {label: 'Significant', value: Magnitude.SIGNIFICANT},
     {label: '> 4.5', value: Magnitude.FOUR_FIVE},
     {label: '> 2.5', value: Magnitude.TWO_FIVE},
-    {label: '> 1.0', value: Magnitude.ONE_ZERO},
-    {label: 'All', value: Magnitude.ALL}
+    {label: '> 1.0', value: Magnitude.ONE_ZERO}
   ];
 
   // alert
@@ -53,7 +52,7 @@ export class SidenavMenuComponent implements OnInit {
 
   // select values
   sortBy: Sort = Sort.DATE_DESC;
-  selectedAlert: Properties.AlertEnum;
+  selectedAlert: Properties.AlertEnum | 'all' = 'all';
   selectedMagnitude: Magnitude = Magnitude.SIGNIFICANT;
   selectedDate: DateTime = DateTime.WEEK;
 
@@ -63,16 +62,18 @@ export class SidenavMenuComponent implements OnInit {
 
   constructor(
     private earthquakesService: EarthquakesService,
-    private dataManager: ApplySortFiltersService,
+    private dataManager: DataManagerService,
+    private filterSort: FilterSortService
     ) {
 
       // initial data when loading page
       this.earthquakesService
-        .getEarthquakes(this.selectedMagnitude, this.selectedDate, this.sortBy)
+        .getEarthquakes(this.selectedMagnitude, this.selectedDate)
         .pipe(first())
-        .subscribe(
-          earthquakes => this.dataManager.updateData(earthquakes)
-        );
+        .subscribe(earthquakes => {
+          this.earthquakes = earthquakes; // persist data in memory (this.earthquakes)
+          this.modifyData(earthquakes, this.sortBy, this.selectedAlert);
+        });
     }
 
   ngOnInit() {
@@ -84,66 +85,34 @@ export class SidenavMenuComponent implements OnInit {
 
   public apply(): void {
 
-    // only if these two values change, that it is required to fetch data from server
+    // API calls algorithm
+    // if one of these two values change, then it is required to fetch new data from the server
     if (this.selectedDate !== this.oldDate || this.selectedMagnitude !== this.oldMag) {
       // update old data
       this.oldDate = this.selectedDate;
       this.oldMag = this.selectedMagnitude;
 
       this.earthquakesService.getEarthquakes(this.selectedMagnitude, this.selectedDate)
-          .subscribe(
-            earthquakes => this.dataManager.updateData(earthquakes)
-          );
+          .subscribe(earthquakes => {
+              this.earthquakes = earthquakes; // persist data in memory (this.earthquakes)
+              this.modifyData(earthquakes, this.sortBy, this.selectedAlert);
+          });
+    } else { // use earthquakes in memory
+      this.modifyData(this.earthquakes, this.sortBy, this.selectedAlert);
     }
+  }
 
-    // filter alert
+  // filter/sort and update the data in the dashboard
+  private modifyData(earthquakes: Earthquakes, sortBy: Sort, filterAlert?: Properties.AlertEnum | 'all'): void {
+    let output: Earthquakes = {...earthquakes}; // clone
 
+    // filter by alert
+    if (filterAlert && filterAlert !== 'all') {
+      output = this.filterSort.fAlert(output, filterAlert);
+    }
     // sort
-    
-  }
-
-  private sortOperation(earthquakes: Earthquakes, sort: Sort): Earthquakes {
-    const features: Feature[] = earthquakes.features;
-
-    switch (sort) {
-      case Sort.DATE_ASC:
-        features.sort((a, b) => {
-          const aTime = a.properties.time;
-          const bTime = b.properties.time;
-          return this.ASC(aTime, bTime);
-        });
-        break;
-      case Sort.DATE_DESC:
-        features.sort((a, b) => {
-          const aTime = a.properties.time;
-          const bTime = b.properties.time;
-          return this.DESC(aTime, bTime);
-        });
-        break;
-      case Sort.MAG_ASC:
-        features.sort((a, b) => {
-          const aMag = a.properties.mag;
-          const bMag = b.properties.mag;
-          return this.ASC(aMag, bMag);
-        });
-        break;
-      case Sort.MAG_DESC:
-        features.sort((a, b) => {
-          const aMag = a.properties.mag;
-          const bMag = b.properties.mag;
-          return this.DESC(aMag, bMag);
-        });
-        break;
-    }
-
-    return earthquakes;
-  }
-
-  private DESC(a: number, b: number): number {
-    return b - a;
-  }
-
-  private ASC(a: number, b: number): number {
-    return -this.DESC(a, b);
+    output = this.filterSort.sort(output, sortBy);
+    // trigger
+    this.dataManager.updateData(output);
   }
 }

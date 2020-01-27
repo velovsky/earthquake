@@ -5,7 +5,8 @@ import { Earthquakes } from '@app/api/models/earthquakes';
 @Injectable({
   providedIn: 'root'
 })
-export class ApplySortFiltersService {
+// service responsible to communicate data to dashboard (+- redux)
+export class DataManagerService {
 
   // Observable string sources
   private newData = new Subject<Earthquakes>();

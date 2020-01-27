@@ -27,6 +27,7 @@
   <mat-form-field>
     <mat-label>Alert type</mat-label>
     <mat-select [(value)]="selectedAlert">
+      <mat-option [value]="'all'">All</mat-option>
       <mat-option *ngFor="let field of alertFields" [value]="field.value">
         {{field.label}}
       </mat-option>

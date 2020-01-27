@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EarthquakeCard } from './models/earthquakeCard';
 import { MapperEarthquakeToCardService } from './services/mapper-earthquake-to-card.service';
 import { Earthquakes } from './api/models/earthquakes';
-import { ApplySortFiltersService } from './services/apply-sort-filters.service';
+import { DataManagerService } from './services/data-manager.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private mapperEarthquakeToCardService: MapperEarthquakeToCardService,
-    private dataManager: ApplySortFiltersService
+    private dataManager: DataManagerService
     ) {
 
       // update results in page everytime the filter/sort is changed
