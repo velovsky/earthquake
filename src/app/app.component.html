@@ -12,14 +12,14 @@
   <!-- END SIDENAV -->
 
   <!-- BEGIN PAGE CONTENT -->
-  <mat-sidenav-content>
+  <mat-sidenav-content #top>
     <p class="open-side-wrapper">
       <button (click)="sidenav.open()" mat-fab aria-label="Open filter and sort menu">
         <mat-icon>menu_open</mat-icon>
       </button>
     </p>
     <section class="list-cards">
-      <app-earthquake-card *ngFor="let earthquake of earthquakeCards; index as i" 
+      <app-earthquake-card *ngFor="let earthquake of earthquakeCardsPerPage; index as i" 
         [info]="earthquake">
       </app-earthquake-card>
     </section>
@@ -27,3 +27,9 @@
   <!-- END PAGE CONTENT -->
 
 </mat-sidenav-container>
+
+<mat-paginator [length]="earthquakeCards.length"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  (page)="pageEvent = handleDataPerPage($event)">
+</mat-paginator>

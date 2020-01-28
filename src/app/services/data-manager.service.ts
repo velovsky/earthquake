@@ -26,7 +26,7 @@ export class DataManagerService {
   newData$ = this.newData.asObservable();
 
   // old values / init state
-  private oldDate: DateTime = DateTime.WEEK;
+  private oldDate: DateTime = DateTime.MONTH;
   private oldMag: Magnitude = Magnitude.SIGNIFICANT;
 
   constructor(
