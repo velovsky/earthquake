@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "docker_build": "docker build -f Dockerfile -t earthquake .",
+    "docker_run": "docker run -it -p 80:80 --rm earthquake"
   },
   "private": true,
   "dependencies": {

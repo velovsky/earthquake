@@ -51,11 +51,13 @@ export class AppComponent implements OnInit {
     this.top.getElementRef().nativeElement.scrollTop = 0;
   }
 
-  handleDataPerPage(event: PageEvent) {
+  handleDataPerPage(event: PageEvent): PageEvent {
     this.pageIndex = event.pageIndex;
     this.earthquakeCardsPerPage = this.earthquakeCards.slice(this.pageIndex * this.pageSize,
        (this.pageIndex + 1) * this.pageSize);
     // scroll to top
     this.top.getElementRef().nativeElement.scrollTop = 0;
+
+    return event;
   }
 }
