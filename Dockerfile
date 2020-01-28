@@ -28,7 +28,7 @@ COPY . /app
 RUN ng test --watch=false
 
 # generate build
-RUN ng build --output-path=dist --prod=true
+RUN ng build --output-path=dist
 
 ############
 ### prod ###
