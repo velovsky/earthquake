@@ -2,6 +2,10 @@ $paginator-height: 56px;
 
 mat-sidenav-container {
   height: calc(100% - #{$paginator-height});
+
+  &.mat-drawer-container-has-open {
+    z-index: 2;
+  }
 }
 
 mat-sidenav {

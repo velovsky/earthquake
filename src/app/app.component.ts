@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   // MatPaginator
   pageIndex = 0;
-  pageSize = 10;
+  pageSize = 5;
   pageEvent: PageEvent;
 
   constructor(
