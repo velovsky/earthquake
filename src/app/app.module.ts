@@ -16,13 +16,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { environment } from 'src/environments/environment';
 import { EarthquakeCardComponent } from './earthquake-card/earthquake-card.component';
 import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     EarthquakeCardComponent,
-    SidenavMenuComponent
+    SidenavMenuComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

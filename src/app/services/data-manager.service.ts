@@ -9,6 +9,8 @@ import { DateTime } from '@app/models/dateTime.enum';
 import { Sort } from '@app/models/sort.enum';
 import { Properties } from '@app/api/models/property';
 import { InitState } from '@app/models/initState';
+import { EarthquakeCard } from '@app/models/earthquakeCard';
+import { MapperEarthquakeToCardService } from './mapper-earthquake-to-card.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,10 @@ export class DataManagerService {
 
   // in-memory data
   earthquakes: Earthquakes;
+  earthquakeCards: EarthquakeCard[];
 
   // Observable string sources
-  private newData = new Subject<Earthquakes>();
+  private newData = new Subject<void>();
 
   // Observable string streams
   newData$ = this.newData.asObservable();
@@ -31,6 +34,7 @@ export class DataManagerService {
 
   constructor(
     private earthquakesService: EarthquakesService,
+    private mapperEarthquakeToCardService: MapperEarthquakeToCardService,
     private filterSort: FilterSortService
     ) {
 
@@ -44,9 +48,27 @@ export class DataManagerService {
         });
     }
 
-  // Service message commands
+  // Service message commands (trigger)
   updateData(earthquakes: Earthquakes): void {
-    this.newData.next(earthquakes);
+    this.earthquakeCards = earthquakes.features.map(
+      feature => this.mapperEarthquakeToCardService.convert(feature)
+    );
+    this.newData.next();
+  }
+
+  // to feed dashboard
+  getEarthquakeCards(pageIndex: number, pageSize: number): EarthquakeCard[] {
+    return this.earthquakeCards.slice(pageIndex * pageSize,
+      (pageIndex + 1) * pageSize);
+  }
+
+  // for paginator
+  getCardsLength(): number {
+    if (!this.earthquakeCards) {
+      return 0;
+    }
+
+    return this.earthquakeCards.length;
   }
 
   // return initial state
