@@ -1,5 +1,7 @@
+$paginator-height: 56px;
+
 mat-sidenav-container {
-  height: 100%;
+  height: calc(100% - #{$paginator-height});
 }
 
 mat-sidenav {
@@ -24,4 +26,12 @@ mat-sidenav-content {
   app-earthquake-card {
     margin: 5px;
   }
+}
+
+mat-paginator {
+  position: relative;
+  background: rgba(251, 198, 0, 0.8);
+  color: #211c08;
+  box-shadow: 0 0 5px 3px rgba(0,0,0,.2);
+  z-index: 1;
 }
