@@ -60,6 +60,4 @@ Some features I believe it could bring more added value to the project:
  - **Router implementation**: add query parameters to mimic the state of the page. This way the page could be shared to others. The routing module already exists, but requires to be configured;
  - **Redux state management**: Add a store for proper management of events within the application. For these requirements it is excessive, but for project scalability sake, it would make more sense in the long-run;
  - **Create an API backend server**: Ease the performance on the client side, by creating a backend api. This way it will leverage the logic and processing for the client;
- - **Improve API requests**: Make it more efficient, provided there is no backend API. For example if All magnitudes are selected and later changed to another value, avoid making  an additional HTTP request;
- - **Loader component**: for every HTTP request, display a loader so that the user is aware that the app is awaiting a response from the server;
- - **Error message**: also for every failed HTTP request, add a handler to alert the user that data is inaccessible at the current time, or/and retry one or two more times the call in question.
+ - **Improve API requests**: Make it more efficient, provided there is no backend API. For example if All magnitudes is selected and later changed to another value, avoid making an additional HTTP request;

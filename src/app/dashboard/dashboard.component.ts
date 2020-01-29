@@ -42,7 +42,7 @@ export class DashboardComponent implements OnDestroy {
   }
 
   handleEarthquakes(): void {
-    // refresh the dashboard (limit to pageSize)
+    // refresh the dashboard (limited to pageSize)
     this.earthquakeCards = this.dataManager.getEarthquakeCards(this.pageIndex, this.pageSize);
     // scroll to top
     this.top.getElementRef().nativeElement.scrollTop = 0;
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    // remove subs, to avoid memory leaks
+    // avoid memory leaks
     this.subscription.unsubscribe();
   }
 

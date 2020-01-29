@@ -4,8 +4,8 @@ import { EarthquakeCardComponent } from './earthquake-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { EarthquakeCard } from './models/earthquakeCard';
 
-import { EarthquakeCard } from '@app/models/earthquakeCard';
 
 describe('EarthquakeCardComponent', () => {
   let component: EarthquakeCardComponent;

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Earthquakes } from '@app/api/models/earthquakes';
 import { Feature } from '@app/api/models/feature';
-import { Properties } from '@app/api/models/property';
 import { Sort } from '../models/sort.enum';
+import { Alert } from '@app/api/models/alert.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterSortService {
 
-  public fAlert(earthquakes: Earthquakes, alert: Properties.AlertEnum): Earthquakes {
+  public fAlert(earthquakes: Earthquakes, alert: Alert): Earthquakes {
     const features: Feature[] = earthquakes.features;
     earthquakes.features = features.filter( feature => feature.properties.alert === alert );
 

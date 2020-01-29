@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -13,7 +14,8 @@ describe('DashboardComponent', () => {
       declarations: [ DashboardComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        MatSnackBarModule
       ]
     })
     .compileComponents();
