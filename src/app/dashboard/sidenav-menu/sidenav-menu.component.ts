@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Earthquakes } from '@app/api/models/earthquakes';
 import { Properties } from '@app/api/models/property';
-import { DateTime } from '@app/models/dateTime.enum';
-import { FilterSelect } from '@app/models/filterSelect';
-import { Magnitude } from '@app/models/magnitude.enum';
-import { Sort } from '@app/models/sort.enum';
-import { SortSelect } from '@app/models/sortSelect';
-import { DataManagerService } from '@app/services/data-manager.service';
+import { FilterSelect } from './models/filterSelect';
+import { DateTime } from '@app/api/models/dateTime.enum';
+import { Magnitude } from '@app/api/models/magnitude.enum';
+import { SortSelect } from './models/sortSelect';
+import { Sort } from '../models/sort.enum';
+import { DataManagerService } from '../services/data-manager.service';
+
 
 @Component({
   selector: 'app-sidenav-menu',

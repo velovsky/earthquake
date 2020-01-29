@@ -1,9 +1,9 @@
 import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSidenavContent } from '@angular/material/sidenav';
-import { EarthquakeCard } from '@app/models/earthquakeCard';
-import { DataManagerService } from '@app/services/data-manager.service';
 import { Subscription } from 'rxjs';
+import { EarthquakeCard } from './earthquake-card/models/earthquakeCard';
+import { DataManagerService } from './services/data-manager.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnDestroy {
 
   subscription: Subscription = new Subscription();
 
-  // workaround to scroll to top
+  // reference used to scroll to top on Material side container: https://github.com/angular/components/issues/4280
   @ViewChild('top', {static: false}) top !: MatSidenavContent;
 
   constructor(public dataManager: DataManagerService) {

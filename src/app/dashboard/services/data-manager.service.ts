@@ -4,13 +4,13 @@ import { Earthquakes } from '@app/api/models/earthquakes';
 import { EarthquakesService } from '@app/api/api/earthquakes.service';
 import { FilterSortService } from './filter-sort.service';
 import { first } from 'rxjs/operators';
-import { Magnitude } from '@app/models/magnitude.enum';
-import { DateTime } from '@app/models/dateTime.enum';
-import { Sort } from '@app/models/sort.enum';
 import { Properties } from '@app/api/models/property';
-import { InitState } from '@app/models/initState';
-import { EarthquakeCard } from '@app/models/earthquakeCard';
+import { InitState } from '@app/dashboard/sidenav-menu/models/initState';
 import { MapperEarthquakeToCardService } from './mapper-earthquake-to-card.service';
+import { EarthquakeCard } from '../earthquake-card/models/earthquakeCard';
+import { DateTime } from '../../api/models/dateTime.enum';
+import { Magnitude } from '../../api/models/magnitude.enum';
+import { Sort } from '../models/sort.enum';
 
 @Injectable({
   providedIn: 'root'

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Earthquakes } from '@app/api/models/earthquakes';
-import { Sort } from '@app/models/sort.enum';
 import { Feature } from '@app/api/models/feature';
 import { Properties } from '@app/api/models/property';
+import { Sort } from '../models/sort.enum';
 
 @Injectable({
   providedIn: 'root'

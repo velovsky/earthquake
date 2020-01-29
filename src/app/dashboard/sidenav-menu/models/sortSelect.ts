@@ -1,4 +1,4 @@
-import { Sort } from './sort.enum';
+import { Sort } from '../../models/sort.enum';
 
 export interface SortSelect {
   label: string;

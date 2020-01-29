@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DateTime } from '@app/models/dateTime.enum';
-import { Magnitude } from '@app/models/magnitude.enum';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Earthquakes } from '../models/earthquakes';
+import { Magnitude } from '../models/magnitude.enum';
+import { DateTime } from '../models/dateTime.enum';
 
 @Injectable({
   providedIn: 'root'
