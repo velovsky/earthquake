@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Alert } from '@app/api/models/alert.enum';
+import { DateTime } from '@app/api/models/dateTime.enum';
 import { Earthquakes } from '@app/api/models/earthquakes';
-import { Properties } from '@app/api/models/property';
-import { DateTime } from '@app/models/dateTime.enum';
-import { FilterSelect } from '@app/models/filterSelect';
-import { Magnitude } from '@app/models/magnitude.enum';
-import { Sort } from '@app/models/sort.enum';
-import { SortSelect } from '@app/models/sortSelect';
-import { DataManagerService } from '@app/services/data-manager.service';
+import { Magnitude } from '@app/api/models/magnitude.enum';
+import { Sort } from '../models/sort.enum';
+import { DataManagerService } from '../services/data-manager.service';
+import { FilterSelect } from './models/filterSelect';
+import { SortSelect } from './models/sortSelect';
+
 
 @Component({
   selector: 'app-sidenav-menu',
@@ -33,7 +34,7 @@ export class SidenavMenuComponent implements OnInit {
 
   // alert
   alertFields: FilterSelect[] = [];
-  private alertOptions: string[] = Object.keys(Properties.AlertEnum).map(key => Properties.AlertEnum[key]);
+  private alertOptions: string[] = Object.keys(Alert).map(key => Alert[key]);
 
   // sort
   sortFields: SortSelect[] = [
@@ -45,7 +46,7 @@ export class SidenavMenuComponent implements OnInit {
 
   // select values
   sortBy: Sort;
-  selectedAlert: Properties.AlertEnum | 'all';
+  selectedAlert: Alert | 'all';
   selectedMagnitude: Magnitude;
   selectedDate: DateTime;
 

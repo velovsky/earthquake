@@ -1,3 +1,5 @@
+import { Alert } from './alert.enum';
+
 export interface Properties {
   mag: number;
   place: string;
@@ -9,7 +11,7 @@ export interface Properties {
   felt: number;
   cdi: number;
   mmi: number;
-  alert: Properties.AlertEnum;
+  alert: Alert;
   status: string;
   tsunami: number;
   sig: number;
@@ -24,14 +26,4 @@ export interface Properties {
   gap: number;
   magType: string;
   type: string;
-}
-
-export namespace Properties {
-  export type AlertEnum = 'green' | 'yellow' | 'orange' | 'red';
-  export const AlertEnum = {
-      GREEN: 'green' as AlertEnum,
-      YELLOW: 'yellow' as AlertEnum,
-      ORANGE: 'orange' as AlertEnum,
-      RED: 'red' as AlertEnum
-  };
 }

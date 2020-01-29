@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { EarthquakeCard } from '@app/models/earthquakeCard';
 import { Feature } from '@app/api/models/feature';
+import { EarthquakeCard } from '../earthquake-card/models/earthquakeCard';
 
 @Injectable({
   providedIn: 'root'

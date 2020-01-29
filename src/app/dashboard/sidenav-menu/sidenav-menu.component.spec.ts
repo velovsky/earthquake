@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SidenavMenuComponent } from './sidenav-menu.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('SidenavMenuComponent', () => {
   let component: SidenavMenuComponent;
@@ -13,7 +14,8 @@ describe('SidenavMenuComponent', () => {
       declarations: [ SidenavMenuComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        MatSnackBarModule
       ]
     })
     .compileComponents();

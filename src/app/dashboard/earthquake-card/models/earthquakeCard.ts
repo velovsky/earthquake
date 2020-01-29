@@ -1,10 +1,10 @@
-import { Properties } from '@api/models/property';
+import { Alert } from '@app/api/models/alert.enum';
 
 export class EarthquakeCard {
   place: string;
   date: Date;
   magnitude: number;
-  alert: Properties.AlertEnum;
+  alert: Alert;
   tsunami: boolean;
   link: string;
   longitude: number;

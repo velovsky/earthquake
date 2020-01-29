@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Earthquakes } from '@app/api/models/earthquakes';
 import { EarthquakesService } from '@app/api/api/earthquakes.service';
-import { FilterSortService } from './filter-sort.service';
+import { Alert } from '@app/api/models/alert.enum';
+import { Earthquakes } from '@app/api/models/earthquakes';
+import { InitState } from '@app/dashboard/sidenav-menu/models/initState';
+import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { Magnitude } from '@app/models/magnitude.enum';
-import { DateTime } from '@app/models/dateTime.enum';
-import { Sort } from '@app/models/sort.enum';
-import { Properties } from '@app/api/models/property';
-import { InitState } from '@app/models/initState';
-import { EarthquakeCard } from '@app/models/earthquakeCard';
+import { DateTime } from '../../api/models/dateTime.enum';
+import { Magnitude } from '../../api/models/magnitude.enum';
+import { EarthquakeCard } from '../earthquake-card/models/earthquakeCard';
+import { Sort } from '../models/sort.enum';
+import { FilterSortService } from './filter-sort.service';
 import { MapperEarthquakeToCardService } from './mapper-earthquake-to-card.service';
 
 @Injectable({
@@ -81,7 +81,7 @@ export class DataManagerService {
     };
   }
 
-  receiveDataFromMenu(selectDate: DateTime, selectedMagnitude: Magnitude, sortBy: Sort, selectedAlert: Properties.AlertEnum | 'all'): void {
+  receiveDataFromMenu(selectDate: DateTime, selectedMagnitude: Magnitude, sortBy: Sort, selectedAlert: Alert | 'all'): void {
     // API calls algorithm
     // if one of these two values change, then it is required to fetch new data from the server
     if (selectDate !== this.oldDate || selectedMagnitude !== this.oldMag) {
@@ -100,7 +100,7 @@ export class DataManagerService {
   }
 
   // filter/sort and update the data in the dashboard
-  private modifyData(earthquakes: Earthquakes, sortBy: Sort, filterAlert: Properties.AlertEnum | 'all'): void {
+  private modifyData(earthquakes: Earthquakes, sortBy: Sort, filterAlert: Alert | 'all'): void {
     let output: Earthquakes = {...earthquakes}; // clone
 
     // filter by alert

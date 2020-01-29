@@ -1,0 +1,14 @@
+$spinner-size: 100px;
+
+.loader-wrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(245, 245, 245, 0.8);
+  z-index: 9999;
+}
+
+mat-spinner {
+  left: calc(50% - #{$spinner-size} / 2);
+  top: calc(50% - #{$spinner-size} / 2);
+}
