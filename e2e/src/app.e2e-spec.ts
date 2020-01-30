@@ -1,16 +1,16 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('Earthquakes App', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('have loader and dashboard elements present', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('earthquake app is running!');
+    expect(page.haveLoadingElement() && page.haveDashboardElement()).toEqual(true);
   });
 
   afterEach(async () => {

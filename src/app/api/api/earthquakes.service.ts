@@ -14,7 +14,7 @@ import { Magnitude } from '../models/magnitude.enum';
 export class EarthquakesService {
 
   protected basePath = `${environment.earthquakesApiEndpoint}`;
-  private format = '.geojson';
+  public format = '.geojson';
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 

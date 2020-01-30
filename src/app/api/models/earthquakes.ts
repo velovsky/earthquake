@@ -3,8 +3,8 @@ import { Bbox } from './bbox';
 import { Feature } from './feature';
 
 export interface Earthquakes {
-  type: 'FeatureCollection';
-  metadata: Metadata;
-  bbox: Bbox;
+  type?: 'FeatureCollection';
+  metadata?: Metadata;
+  bbox?: Bbox;
   features: Feature[];
 }

@@ -5,7 +5,11 @@ export class AppPage {
     return browser.get(browser.baseUrl) as Promise<any>;
   }
 
-  getTitleText() {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+  haveLoadingElement() {
+    return element(by.css('app-root app-loader')).isPresent() as Promise<boolean>;
+  }
+
+  haveDashboardElement() {
+    return element(by.css('app-root app-dashboard')).isPresent() as Promise<boolean>;
   }
 }
