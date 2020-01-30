@@ -9,7 +9,9 @@ import { EarthquakeCard } from './models/earthquakeCard';
 
 describe('EarthquakeCardComponent', () => {
   let component: EarthquakeCardComponent;
+  let element: HTMLElement;
   let fixture: ComponentFixture<EarthquakeCardComponent>;
+  const title = 'Dummy Title';
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,12 +28,20 @@ describe('EarthquakeCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EarthquakeCardComponent);
     component = fixture.componentInstance;
+    element = fixture.nativeElement;
+
     const earthquakeCard = new EarthquakeCard();
+    earthquakeCard.place = title;
     component.earthquakesCard = earthquakeCard;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('test card title', () => {
+    const titleElement = element.querySelector('.mat-card-title');
+    expect(titleElement.textContent).toContain(title);
   });
 });
