@@ -15,7 +15,7 @@ describe('FilterSortService', () => {
       properties: {
         mag: 6.3,
         place: '105km WNW of Kirakira, Solomon Islands',
-        time: 1580101321061,
+        time: 1580101321450,
         url: 'https://earthquake.usgs.gov/earthquakes/eventpage/us60007gyx',
         alert: Alert.GREEN,
         tsunami: 1
@@ -35,7 +35,7 @@ describe('FilterSortService', () => {
       properties: {
         mag: 2.2,
         place: '122km Puerto Rico',
-        time: 1580101321450,
+        time: 1580101321061,
         url: 'https://earthquake.usgs.gov/earthquakes/eventpage/us602347gyx',
         alert: Alert.RED,
         tsunami: 0
@@ -54,23 +54,15 @@ describe('FilterSortService', () => {
   });
 
   it('ascendant date/time sort', () => {
-    const older: Feature = dummyEarthquakes.features[1];
+    const youngest: Feature = dummyEarthquakes.features[2];
 
-    const sortedEarthquakes: Earthquakes = service.sort(dummyEarthquakes, Sort.DATE_ASC);
+    const sortedEarthquakes: Earthquakes = service.sort({...dummyEarthquakes}, Sort.DATE_ASC);
 
-    expect(sortedEarthquakes.features[0]).toEqual(older);
-  });
-
-  it('descendant magnitude sort', () => {
-    const highestMagnitude: Feature = dummyEarthquakes.features[1];
-
-    const sortedEarthquakes: Earthquakes = service.sort(dummyEarthquakes, Sort.MAG_DESC);
-
-    expect(sortedEarthquakes.features[0]).toEqual(highestMagnitude);
+    expect(sortedEarthquakes.features[0]).toEqual(youngest);
   });
 
   it('fitler for green alerts', () => {
-    const filteredEarthquakes: Earthquakes = service.fAlert(dummyEarthquakes, Alert.GREEN);
+    const filteredEarthquakes: Earthquakes = service.fAlert({...dummyEarthquakes}, Alert.GREEN);
 
     expect(filteredEarthquakes.features.length).toEqual(2);
   });

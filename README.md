@@ -118,3 +118,5 @@ Some features I believe it could bring more added value to the project:
 -  **Create an API backend server**: Ease the performance on the client side, by creating a backend api. This way it will leverage the logic and processing for the client;
 
 -  **Improve API requests**: Make it more efficient, provided there is no backend API. For example if 'All' magnitudes is selected and later changed to another value, avoid making an additional HTTP request;
+
+- **Improve design**: a more appealing design for a better look and feel of the application.
