@@ -4,6 +4,7 @@ import { FilterSortService } from './filter-sort.service';
 import { Earthquakes } from '@app/api/models/earthquakes';
 import { Alert } from '@app/api/models/alert.enum';
 import { Sort } from '../models/sort.enum';
+import { Feature } from '@app/api/models/feature';
 
 describe('FilterSortService', () => {
   let service: FilterSortService;
@@ -53,18 +54,24 @@ describe('FilterSortService', () => {
   });
 
   it('ascendant date/time sort', () => {
-    const older: Earthquakes = dummyEarthquakes[1];
+    const older: Feature = dummyEarthquakes.features[1];
 
     const sortedEarthquakes: Earthquakes = service.sort(dummyEarthquakes, Sort.DATE_ASC);
 
-    expect(sortedEarthquakes[0]).toEqual(older);
+    expect(sortedEarthquakes.features[0]).toEqual(older);
   });
 
   it('descendant magnitude sort', () => {
-    const highestMagnitude: Earthquakes = dummyEarthquakes[1];
+    const highestMagnitude: Feature = dummyEarthquakes.features[1];
 
     const sortedEarthquakes: Earthquakes = service.sort(dummyEarthquakes, Sort.MAG_DESC);
 
-    expect(sortedEarthquakes[0]).toEqual(highestMagnitude);
+    expect(sortedEarthquakes.features[0]).toEqual(highestMagnitude);
+  });
+
+  it('fitler for green alerts', () => {
+    const filteredEarthquakes: Earthquakes = service.fAlert(dummyEarthquakes, Alert.GREEN);
+
+    expect(filteredEarthquakes.features.length).toEqual(2);
   });
 });
