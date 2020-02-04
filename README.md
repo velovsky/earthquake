@@ -75,11 +75,11 @@ Four services were created:
 
 -  **Data Manager**: last but not least, the Data Manager whom is responsible to:
 
-  - request data from the API;
+    - request data from the API;
 
-  - transform data in order for the dashboard to consume: acting as a *redux*;
+    - transform data in order for the dashboard to consume: acting as a *redux*;
 
-  - centralize all the relevant earthquake data: persisting in memory, unless new data is required from the API.
+    - centralize all the relevant earthquake data: persisting in memory, unless new data is required from the API.
 
   
 
